@@ -1,0 +1,43 @@
+.button {
+  background-color: #bca0da;
+  color: #ffffff;
+  height: 40px;
+  width: 100px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin-top: 0px;
+}
+
+.button:hover {
+  background-color: #c459e2;
+}
+
+.password-icon {
+  display: flex;
+  align-items: center;
+  margin-top: 1px;
+}
+
+.HidePass {
+  color: #a284c2;
+  margin-top: -2px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.icons {
+  color: #a284c2;
+  margin: -18px 5px 0 8px;
+}
+
+.reg-link {
+  font-size: 14px;
+}
+
+.Logininput {
+  width: 90%;
+}

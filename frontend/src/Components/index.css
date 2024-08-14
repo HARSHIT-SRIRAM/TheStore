@@ -1,0 +1,54 @@
+.BgContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border: 0px solid;
+  background-color: #dbc4f2;
+  border-radius: 10px;
+  box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.3);
+}
+.conatinername {
+  color: #a284c2;
+  text-align: center;
+}
+
+.form-label {
+  margin-bottom: 0px !important;
+  padding-left: 3px;
+  color: #a284c2;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.FieldContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  font-size: 17px;
+}
+
+.InputField {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  outline: none;
+  box-shadow: none;
+  height: 13px;
+  color: #333;
+  background-color: #fff;
+}
+
+.InputField:focus {
+  border-color: #a573f2;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+.InputField:-webkit-autofill,
+.InputField:-webkit-autofill:hover,
+.InputField:-webkit-autofill:focus,
+.InputField:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: #333 !important;
+  background-color: #fff !important;
+}

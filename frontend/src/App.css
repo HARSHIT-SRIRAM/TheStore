@@ -1,0 +1,29 @@
+* {
+  font-family: monospace;
+}
+
+/* Hide scrollbars on all elements */
+html,
+body {
+  overflow: auto; /* Ensures scrolling is still possible */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+  scrollbar-width: none; /* For Firefox */
+  background: linear-gradient(
+    to bottom,
+    #d3a6f0 0%,
+    #c29af8 30%,
+    #a573f2 60%,
+    #8a3fd0 100%
+  );
+  background-repeat: no-repeat;
+  height: 100vh;
+  padding-top: 2vh;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+html {
+  scroll-behavior: smooth;
+}
