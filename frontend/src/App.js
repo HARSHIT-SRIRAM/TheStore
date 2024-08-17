@@ -24,7 +24,7 @@ const App = () => {
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/orders" element={<OrderManagement />} />
           <Route path="/products" element={<Products />} />
-          <Route path="*" element={<NotFound />} /> {/* Catch-all route */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </Router>

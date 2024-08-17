@@ -39,7 +39,6 @@ const authenticateToken = (req, res, next) => {
       console.error("JWT Verification Error:", err.message);
       return res.sendStatus(403);
     }
-    console.log("Decoded User:", user);
     req.user = user;
     next();
   });
