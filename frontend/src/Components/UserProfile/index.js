@@ -23,6 +23,7 @@ const UserProfile = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       const { token } = getAuthDetails();
+
       if (!token) {
         setMessageType("info");
         setMessage("Please log in to view your profile.");
@@ -73,10 +74,7 @@ const UserProfile = () => {
 
   const handleDelete = async (addressId) => {
     try {
-      // Retrieve the token from your auth details utility
       const { token } = getAuthDetails();
-
-      // Perform the delete request to the backend
       await axios.delete(
         `${config.apiUrl}/users/profile/address/${addressId}`,
         {
@@ -84,7 +82,6 @@ const UserProfile = () => {
         }
       );
 
-      // Fetch the updated user details
       const response = await axios.get(
         `${config.apiUrl}/users/profile/profileDetails`,
         {
@@ -92,10 +89,8 @@ const UserProfile = () => {
         }
       );
 
-      // Update state with the new user details
       setUserDetails(response.data);
     } catch (err) {
-      // Handle errors, with fallback message if error details are not available
       setMessageType("error");
       setMessage(err.response?.data?.error || "Error deleting address.");
     }
@@ -144,36 +139,44 @@ const UserProfile = () => {
             Edit
           </button>
         </div>
-        <p>
-          <strong className="makingstrong">Username:</strong>{" "}
-          {userDetails.username}
-        </p>
-        <p>
-          <strong className="makingstrong">Email:</strong> {userDetails.email}
-        </p>
-        <p>
-          <strong className="makingstrong">First Name:</strong>{" "}
-          {userDetails.firstName}
-        </p>
-        <p>
-          <strong className="makingstrong">Last Name:</strong>{" "}
-          {userDetails.lastName}
-        </p>
-        <p>
-          <strong className="makingstrong">Phone:</strong> {userDetails.phone}
-        </p>
-        <p>
-          <strong className="makingstrong">Account Type:</strong>{" "}
-          {userDetails.accountType}
-        </p>
-        <p>
-          <strong className="makingstrong">Created At:</strong>{" "}
-          {new Date(userDetails.createdAt).toLocaleDateString()}
-        </p>
-        <p>
-          <strong className="makingstrong">Updated At:</strong>{" "}
-          {new Date(userDetails.updatedAt).toLocaleDateString()}
-        </p>
+        {userDetails ? (
+          <>
+            <p>
+              <strong className="makingstrong">Username:</strong>{" "}
+              {userDetails.username}
+            </p>
+            <p>
+              <strong className="makingstrong">Email:</strong>{" "}
+              {userDetails.email}
+            </p>
+            <p>
+              <strong className="makingstrong">First Name:</strong>{" "}
+              {userDetails.firstName}
+            </p>
+            <p>
+              <strong className="makingstrong">Last Name:</strong>{" "}
+              {userDetails.lastName}
+            </p>
+            <p>
+              <strong className="makingstrong">Phone:</strong>{" "}
+              {userDetails.phone}
+            </p>
+            <p>
+              <strong className="makingstrong">Account Type:</strong>{" "}
+              {userDetails.accountType}
+            </p>
+            <p>
+              <strong className="makingstrong">Created At:</strong>{" "}
+              {new Date(userDetails.createdAt).toLocaleDateString()}
+            </p>
+            <p>
+              <strong className="makingstrong">Updated At:</strong>{" "}
+              {new Date(userDetails.updatedAt).toLocaleDateString()}
+            </p>
+          </>
+        ) : (
+          <p>No user details available.</p>
+        )}
       </div>
 
       <div className="cards addressscard">
@@ -183,41 +186,45 @@ const UserProfile = () => {
             Add
           </button>
         </div>
-        <ul className="addressesContainer">
-          {userDetails.addresses.map((address) => (
-            <li key={address._id} className="addressCard">
-              <div>
-                <p className="address-part">Apartment: {address.apartment}</p>
-                <p className="address-part">Street: {address.street}</p>
-                <p className="address-part">City: {address.city}</p>
-                <p className="address-part">State: {address.state}</p>
-                <p className="address-part">
-                  Postal Code: {address.postalcode}
-                </p>
-                <p className="address-part">Country: {address.country}</p>
-                <button
-                  className="addresseditbtn"
-                  onClick={(event) => handleEditClick(event, address)}
-                >
-                  Edit
-                </button>
-                <button
-                  className="addresseditbtn"
-                  onClick={() => handleDelete(address._id)}
-                >
-                  Delete
-                </button>
-              </div>
-            </li>
-          ))}
-        </ul>
+        {userDetails && userDetails.addresses ? (
+          <ul className="addressesContainer">
+            {userDetails.addresses.map((address) => (
+              <li key={address._id} className="addressCard">
+                <div>
+                  <p className="address-part">Apartment: {address.apartment}</p>
+                  <p className="address-part">Street: {address.street}</p>
+                  <p className="address-part">City: {address.city}</p>
+                  <p className="address-part">State: {address.state}</p>
+                  <p className="address-part">
+                    Postal Code: {address.postalcode}
+                  </p>
+                  <p className="address-part">Country: {address.country}</p>
+                  <button
+                    className="addresseditbtn"
+                    onClick={(event) => handleEditClick(event, address)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="addresseditbtn"
+                    onClick={() => handleDelete(address._id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No addresses available.</p>
+        )}
       </div>
 
       <div className="cards">
         <h1>Wishlisted Items</h1>
-        <ul className="wishlisted-items-container">
-          {wishlistedItems.length > 0 ? (
-            wishlistedItems.map((item) => (
+        {wishlistedItems.length > 0 ? (
+          <ul className="wishlisted-items-container">
+            {wishlistedItems.map((item) => (
               <li key={item._id} className="wishlisted-item">
                 <div className="wishlisted-item-heart-container">
                   <i
@@ -244,11 +251,11 @@ const UserProfile = () => {
                   </p>
                 </div>
               </li>
-            ))
-          ) : (
-            <p className="empty-wishlist-message">No items in your wishlist.</p>
-          )}
-        </ul>
+            ))}
+          </ul>
+        ) : (
+          <p className="empty-wishlist-message">No items in your wishlist.</p>
+        )}
       </div>
 
       {editProfile && (

@@ -3,7 +3,7 @@ import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import config from "../../config/config";
 import MessageModal from "../MessageModal";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getAuthDetails } from "../../utils/authUtils";
 import "./index.css";
 
@@ -112,9 +112,9 @@ const Login = () => {
             </button>
           </div>
         </form>
-        <a href="/register" className="reg-link">
+        <Link to="/register" className="reg-link">
           Don't have an account? Register
-        </a>
+        </Link>
       </div>
       {showModal && (
         <MessageModal
