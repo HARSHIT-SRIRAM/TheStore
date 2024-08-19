@@ -11,11 +11,14 @@ const authenticateToken = require("./src/middleware/authMiddleware");
 const app = express();
 
 const corsOptions = {
-  origin: ["https://the-store-seven.vercel.app", "http://localhost:3000"],
+  origin: [
+    "https://the-store-seven.vercel.app",
+    "https://the-store-cl7n.vercel.app",
+    "http://localhost:3000",
+  ],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
 };
-
 app.use(cors(corsOptions));
 app.use(express.json());
 
