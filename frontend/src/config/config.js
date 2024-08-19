@@ -1,5 +1,5 @@
 const config = {
-  apiUrl: process.env.REACT_APP_API_URL || "http://localhost:5000",
+  apiUrl: "the-store-k9dbom3qm-harshit-srirams-projects.vercel.app",
 };
 
 export default config;
