@@ -76,6 +76,7 @@ const Login = () => {
               type="text"
               id="username"
               className="InputField Logininput"
+              placeholder="user"
               name="username"
               value={formData.username}
               onChange={handleChange}
@@ -89,6 +90,7 @@ const Login = () => {
               type={showPassword ? "text" : "password"}
               id="password"
               className="InputField Logininput"
+              placeholder="Theuser@1"
               name="password"
               value={formData.password}
               onChange={handleChange}
